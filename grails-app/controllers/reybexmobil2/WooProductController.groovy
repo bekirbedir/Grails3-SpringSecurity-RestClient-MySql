@@ -1,5 +1,6 @@
 package reybexmobil2
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
@@ -19,8 +20,21 @@ class WooProductController {
     }
 
     def callapi(){
-        wsService.getProduct()
+        Map result = wsService.getProduct()
 
+
+        //render(view : "callapi", model:[response: result]);
+        respond result
+
+    }
+    def callapi2(){
+        Map result = wsService.getProduct()
+
+        println result
+        WooProduct exProd =  new WooProduct(sku: result.response.sku , productName:result.response.name, stock: result.response.stock_quantity ?:15   )
+        wooProductService.save(exProd)
+
+        render exProd as JSON
 
     }
 
