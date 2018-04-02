@@ -21,8 +21,6 @@ class WooProductController {
 
     def callapi(){
         Map result = wsService.getProduct()
-
-
         //render(view : "callapi", model:[response: result]);
         respond result
 

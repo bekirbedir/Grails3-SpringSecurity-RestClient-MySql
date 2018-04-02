@@ -18,8 +18,5 @@ call api cagirildi
     </g:each>
 </g:each>
 
-
-
-
 </body>
 </html>
